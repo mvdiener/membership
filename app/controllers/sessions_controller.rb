@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
+  
   def new
     if current_user
-      redirect_to(root_path)
+      redirect_to(user_path(current_user), method: "GET")
     else
       render 'new'
     end
