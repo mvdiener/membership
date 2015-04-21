@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def new
     if current_user
-      redirect_to(root_path)
+      redirect_to(user_path(current_user), method: "GET")
     else
       @user = User.new
       render 'new'
@@ -13,11 +13,15 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:current_user_id] = @user.id
-      redirect_to root_path
+      redirect_to(user_path(current_user), method: "GET")
     else
       @errors = @user.errors.full_messages
       render 'new'
     end
+  end
+
+  def show
+    @user = User.find(current_user)
   end
 
     private
