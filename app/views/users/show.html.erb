@@ -3,3 +3,13 @@
 <p>Welcome back <%= @user.username %></p>
 
 <p><%= link_to "Track new membership", new_membership_path %></p>
+
+<p>All of your currently tracked memberships:</p>
+
+<% @memberships.each do |membership| %>
+    Membership name: <%= membership.name %><br>
+    Membership duration in days: <%= membership.duration_day %><br>
+    Membership cost: $<%= sprintf "%.2f", membership.total_cost %><br>
+    Cost per day without membership: $<%= sprintf "%.2f", membership.daily_cost %><br>
+    You need to attend <%= membership.name %> <%= membership.break_even_day %> time(s) to break even!<br>
+<% end %>
