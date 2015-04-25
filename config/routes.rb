@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :users
-  resources :memberships, :controller => 'clubs'
+  resources :passes
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/login', to: 'sessions#new', via: 'get'

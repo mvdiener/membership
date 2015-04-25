@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421023512) do
+ActiveRecord::Schema.define(version: 20150425174311) do
 
-  create_table "clubs", force: true do |t|
+  create_table "passes", force: true do |t|
     t.integer  "user_id"
     t.string   "name"
     t.float    "total_cost"
