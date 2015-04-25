@@ -15,16 +15,16 @@
     <nav class="top-bar" data-topbar role="navigation">
       <ul class="title-area">
         <li class="name">
-          <h1><a href=<%= root_path %>>Pass Tracker</a></h1>
+          <h1><%= link_to "Pass Tracker", root_path %></h1>
         </li>
       </ul>
       <section class="top-bar-section">
         <ul class="right">
           <% if current_user %>
-            <li><a href=<%= logout_path%>>Log Out</a></li>
+            <li><%= link_to "Log Out", logout_path %></li>
           <% else %>
-            <li><a href=<%= signup_path%>>Sign Up</a></li>
-            <li><a href=<%= login_path%>>Sign In</a></li>
+            <li><%= link_to "Sign Up", signup_path %></li>
+            <li><%= link_to "Sign In", login_path %></li>
           <% end %>
         </ul>
       </section>
