@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(current_user)
-    @memberships = @user.clubs
+    @passes = @user.passes
   end
 
     private
