@@ -1,15 +1,19 @@
-<h1>Track new pass</h1>
+<div class="small-10 columns small-centered">
+  <div class="row">
+    <h1>Track new pass</h1>
 
-<% if @errors %>
-  <% @errors.each do |error| %>
-    <li><%= error %></li>
-  <% end %><br>
-<% end %>
+    <% if @errors %>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %><br>
+    <% end %>
 
-<%= form_for(@pass, url: passes_path) do |f| %>
-  <%= f.text_field :name, placeholder: "Name" %><br>
-  <%= f.text_field :duration_day, placeholder: "Duration in Days" %><br>
-  <%= f.text_field :total_cost, placeholder: "Pass Cost" %><br>
-  <%= f.text_field :daily_cost, placeholder: "Daily Cost" %><br>
-  <%= f.submit "Start tracking!", class: 'button' %>
-<% end %>
+    <%= form_for(@pass, url: passes_path) do |f| %>
+      <%= f.text_field :name, placeholder: "Name" %><br>
+      <%= f.text_field :duration_day, placeholder: "Duration in Days" %><br>
+      <%= f.text_field :total_cost, placeholder: "Pass Cost" %><br>
+      <%= f.text_field :daily_cost, placeholder: "Daily Cost" %><br>
+      <%= f.submit "Start tracking!", class: 'button' %>
+    <% end %>
+  </div>
+</div>
