@@ -7,8 +7,9 @@ class CreatePasses < ActiveRecord::Migration
       t.float :daily_cost
       t.integer :break_even_day
       t.date :start_date
-      t.string :duration_type
+      t.date :end_date
       t.integer :duration_day
+      t.integer :attended_count, default: 0
 
       t.timestamps
     end
