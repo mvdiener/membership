@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   match '/login', to: 'sessions#new', via: 'get'
   match '/signup', to: 'users#new', via: 'get'
   match '/logout', to: 'sessions#destroy', via: 'get'
+  match '/increase/:id', to: 'passes#increase', via: 'get', as: :increase
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
