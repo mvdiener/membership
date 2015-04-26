@@ -8,16 +8,11 @@
 </div>
 <div class="small-10 columns small-centered">
   <div class="row">
-    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+    <ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-1">
       <% @passes.each do |pass| %>
         <li><div class="panel">
           <%= link_to pass.name, pass_path(pass.id), method: "GET" %>
-          Pass ID: <%= pass.id %><br>
-          Pass name: <%= pass.name %><br>
-          Pass duration in days: <%= pass.duration_day %><br>
-          Pass cost: $<%= sprintf "%.2f", pass.total_cost %><br>
-          Cost per day without pass: $<%= sprintf "%.2f", pass.daily_cost %><br>
-          You need to attend <%= pass.name %> <%= pass.break_even_day %> time(s) to break even!<br>
+
         </div></li>
       <% end %>
     </ul>
