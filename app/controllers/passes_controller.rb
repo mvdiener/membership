@@ -20,9 +20,7 @@ class PassesController < ApplicationController
   def show
     @pass = Pass.find(params[:id].to_i)
     @days_left = @pass.days_left_to_attend(@pass.end_date)
-    if @pass.break_even_day && @pass.attends_needed(@pass.break_even_day, @pass.attended_count) > 0
-      @attends_needed = @pass.attends_needed(@pass.break_even_day, @pass.attended_count)
-    end
+    @attends_needed = @pass.attends_needed(@pass.break_even_day, @pass.attended_count) if @pass.break_even_day
     @cost = @pass.cost_per_visit(@pass.attended_count, @pass.total_cost) if @pass.attended_count > 0
   end
 
@@ -30,7 +28,7 @@ class PassesController < ApplicationController
     @pass = Pass.find(params[:id].to_i)
     @pass.attended_count += 1
     @pass.save
-    render 'show'
+    redirect_to pass_path(params[:id].to_i)
   end
 
   private
