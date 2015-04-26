@@ -1,0 +1,25 @@
+<div class="small-10 columns small-centered">
+  <div class="row">
+    <center>
+      <h3><%= @pass.name %></h3>
+      <%= link_to "I used my pass today!", increase_path, class: "button" %>
+    </center>
+    Pass cost: $<%= sprintf "%.2f", @pass.total_cost %><br>
+    <% if @pass.daily_cost %>
+      Cost per day without pass: $<%= sprintf "%.2f", @pass.daily_cost %><br>
+    <% end %>
+    Pass start date: <%= @pass.start_date.strftime("%B %-d, %Y") %><br>
+    Pass end date: <%= @pass.end_date.strftime("%B %-d, %Y") %><br>
+    Pass duration in days: <%= @pass.duration_day %><br><br>
+    You have <%= @days_left %> day(s) left to use your pass<br>
+    You have attended <%= @pass.name %> <%= @pass.attended_count %> time(s)<br>
+    <% if @attends_needed %>
+      You need to attend <%= @pass.name %> <%= @attends_needed %> more time(s) to break even<br>
+    <% else %>
+      Congratulations! You've made your money back!<br>
+    <% end %>
+    <% if @cost %>
+      You are currently spending $<%= @cost %> per visit<br>
+    <% end %>
+  </div>
+</div>
