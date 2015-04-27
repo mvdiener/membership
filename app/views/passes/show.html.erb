@@ -13,13 +13,19 @@
     Pass duration in days: <%= @pass.duration_day %><br><br>
     You have <%= @days_left %> day(s) left to use your pass<br>
     You have attended <%= @pass.name %> <%= @pass.attended_count %> time(s)<br>
-    <% if @attends_needed > 0 %>
-      You need to attend <%= @pass.name %> <%= @attends_needed %> more time(s) to break even<br>
-    <% else %>
-      Congratulations! You've broken even!<br>
+    <% if @attends_needed %>
+      You have <%= @savings %> with this pass<br>
+      <% if @attends_needed > 0 %>
+        You need to attend <%= @pass.name %> <%= @attends_needed %> more time(s) to break even<br>
+      <% else %>
+        Congratulations! You've broken even!<br>
+      <% end %>
     <% end %>
     <% if @cost %>
       You are currently spending $<%= @cost %> per visit<br>
     <% end %>
+    <center>
+      <%= link_to "Delete This Pass", pass_path(@pass.id), method: "DELETE", data: {confirm: "Are you sure you want to delete this pass? This cannot be undone."}, class: "button" %>
+    </center>
   </div>
 </div>
