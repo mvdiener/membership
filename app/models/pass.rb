@@ -19,5 +19,9 @@ class Pass < ActiveRecord::Base
   def cost_per_visit(attend_count, total_cost)
     sprintf "%.2f", (total_cost/attend_count.to_f)
   end
+
+  def savings(attend_count, daily_cost, total_cost)
+    sprintf "%.2f", ((daily_cost * attend_count.to_f) - total_cost)
+  end
   
 end

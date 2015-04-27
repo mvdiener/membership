@@ -20,7 +20,15 @@ class PassesController < ApplicationController
   def show
     @pass = Pass.find(params[:id].to_i)
     @days_left = @pass.days_left_to_attend(@pass.end_date)
-    @attends_needed = @pass.attends_needed(@pass.break_even_day, @pass.attended_count) if @pass.break_even_day
+    if @pass.break_even_day
+      @attends_needed = @pass.attends_needed(@pass.break_even_day, @pass.attended_count)
+      savings = @pass.savings(@pass.attended_count, @pass.daily_cost, @pass.total_cost)
+      if savings.to_f > 0
+        @savings = "saved $#{savings}"
+      else
+        @savings = "lost $#{sprintf "%.2f", savings.to_f.abs}"
+      end
+    end
     @cost = @pass.cost_per_visit(@pass.attended_count, @pass.total_cost) if @pass.attended_count > 0
   end
 
@@ -29,6 +37,12 @@ class PassesController < ApplicationController
     @pass.attended_count += 1
     @pass.save
     redirect_to pass_path(params[:id].to_i)
+  end
+
+  def destroy
+    @pass = Pass.find(params[:id].to_i)
+    @pass.delete
+    redirect_to(user_path(current_user), method: "GET")
   end
 
   private
