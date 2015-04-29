@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :check_user, only: [:show]
+
   def new
     if current_user
       redirect_to(user_path(current_user), method: "GET")
@@ -30,6 +32,12 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :email, :password,
                                    :password_confirmation)
+    end
+
+    def check_user
+      if params[:id].to_i != current_user.id
+        redirect_to(user_path(current_user), method: "GET")
+      end
     end
 
 end

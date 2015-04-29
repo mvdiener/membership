@@ -1,5 +1,7 @@
 class PassesController < ApplicationController
 
+  before_action :check_pass, only: [:show, :increase, :destroy]
+
   def new
     @pass = Pass.new
   end
@@ -10,7 +12,7 @@ class PassesController < ApplicationController
     @pass.break_even_day = @pass.days_to_break_even(@pass.total_cost, @pass.daily_cost) if @pass.daily_cost
     @pass.end_date = @pass.start_date + @pass.duration_day
     if @pass.save
-      redirect_to(user_path(current_user), method: "GET")
+      redirect_to(pass_path(@pass.id), method: "GET")
     else
       @errors = @pass.errors.full_messages
       render 'new'
@@ -49,6 +51,14 @@ class PassesController < ApplicationController
 
     def pass_params
       params.require(:pass).permit(:name, :total_cost, :start_date, :daily_cost, :duration_day)
+    end
+
+
+
+    def check_pass
+      unless current_user.passes.exists?(params[:id].to_i)
+        redirect_to(user_path(current_user), method: "GET")
+      end
     end
 
 end
