@@ -15,3 +15,7 @@
  *= require foundation_and_overrides
 
  */
+
+.delete-button {
+  background-color: #CF1313
+}
