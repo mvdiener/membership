@@ -2,7 +2,9 @@
   <div class="row">
     <center>
       <h3><%= @pass.name %></h3>
-      <%= link_to "I used my pass today!", increase_path, class: "button" %>
+      <% unless @days_left <= 0 %>
+        <%= link_to "I used my pass today!", increase_path, class: "button" %>
+      <% end %>
     </center>
     Pass cost: $<%= sprintf "%.2f", @pass.total_cost %><br>
     <% if @pass.daily_cost %>
@@ -11,7 +13,11 @@
     Pass start date: <%= @pass.start_date.strftime("%B %-d, %Y") %><br>
     Pass end date: <%= @pass.end_date.strftime("%B %-d, %Y") %><br>
     Pass duration in days: <%= @pass.duration_day %><br><br>
-    You have <%= @days_left %> day(s) left to use your pass<br>
+    <% if @days_left <= 0 %>
+      <span style="color:red">Your pass has expired!</span><br>
+    <% else %>
+      You have <%= @days_left %> day(s) left to use your pass<br>
+    <% end %>
     You have attended <%= @pass.name %> <%= @pass.attended_count %> time(s)<br>
     <% if @attends_needed %>
       You have <%= @savings %> with this pass<br>
