@@ -31,6 +31,7 @@
       You are currently spending $<%= @cost %> per visit<br>
     <% end %>
     <center>
+      <%= link_to "Edit Pass Info", edit_pass_path(@pass.id), class: "button edit-button" %>
       <%= link_to "Delete This Pass", pass_path(@pass.id), method: "DELETE", data: {confirm: "Are you sure you want to delete this pass? This cannot be undone."}, class: "button delete-button" %>
     </center>
   </div>
