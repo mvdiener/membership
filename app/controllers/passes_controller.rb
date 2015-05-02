@@ -1,6 +1,6 @@
 class PassesController < ApplicationController
 
-  before_action :check_pass, only: [:show, :increase, :destroy]
+  before_action :check_pass, only: [:show, :edit, :increase, :destroy]
 
   def new
     @pass = Pass.new
@@ -32,6 +32,28 @@ class PassesController < ApplicationController
       end
     end
     @cost = @pass.cost_per_visit(@pass.attended_count, @pass.total_cost) if @pass.attended_count > 0
+  end
+
+  def edit
+    @pass = Pass.find(params[:id])
+  end
+
+  def update
+    puts pass_params
+    @pass = Pass.find(params[:id])
+    if @pass.update_attributes(pass_params)
+      @pass.break_even_day = @pass.days_to_break_even(@pass.total_cost, @pass.daily_cost) if @pass.daily_cost
+      @pass.end_date = @pass.start_date + @pass.duration_day
+      if @pass.save
+        redirect_to(pass_path(@pass.id), method: "GET")
+      else
+        @errors = @pass.errors.full_messages
+        render 'edit'
+      end
+    else
+      @errors = @pass.errors.full_messages
+      render 'edit'
+    end
   end
 
   def increase
