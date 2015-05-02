@@ -1,0 +1,23 @@
+<div class="small-10 columns small-centered">
+  <div class="row">
+    <h1>Editing <%= @pass.name %></h1>
+    <% if @errors %>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %><br>
+    <% end %>
+    <%= form_for(@pass, url: pass_path, method: "PUT") do |f| %>
+      <label for="left-label" class="left"><%= f.label :pass_name %> </label>
+      <%= f.text_field :name %><br>
+      <label for="left-label" class="left"><%= f.label :pass_start_date %> </label>
+      <%= f.date_field :start_date %><br>
+      <label for="left-label" class="left"><%= f.label :pass_duration_in_days %> </label>
+      <%= f.number_field :duration_day, class: "text_field" %><br>
+      <label for="left-label" class="left"><%= f.label :pass_cost %> </label>
+      <%= f.number_field :total_cost, class: "text_field", step: "0.01" %><br>
+      <label for="left-label" class="left"><%= f.label :cost_per_day_without_pass %> </label>
+      <%= f.number_field :daily_cost, placeholder: "Leave blank if N/A", class: "text_field", step: "0.01" %><br>
+      <%= f.submit "Done Editing", class: 'button' %>
+    <% end %>
+  </div>
+</div>
