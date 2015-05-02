@@ -4,6 +4,10 @@ class Pass < ActiveRecord::Base
 
   validates :name, :total_cost, :start_date, :duration_day, presence: true
 
+  validates :duration_day, numericality: { only_integer: true }
+  validates :total_cost, numericality: { only_float: true }
+  validates :daily_cost, numericality: { only_float: true }, allow_nil: true
+
   def days_to_break_even(total_cost, daily_cost)
     ((total_cost.to_f)/(daily_cost.to_f)).ceil
   end
