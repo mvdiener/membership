@@ -18,11 +18,11 @@
     <% else %>
       You have <%= @days_left %> day(s) left to use your pass<br>
     <% end %>
-    You have attended <%= @pass.name %> <%= @pass.attended_count %> time(s)<br>
+    You have attended <%= @pass.attended_count %> time(s)<br>
     <% if @attends_needed %>
       You have <%= @savings %> with this pass<br>
       <% if @attends_needed > 0 %>
-        You need to attend <%= @pass.name %> <%= @attends_needed %> more time(s) to break even<br>
+        You need to attend <%= @attends_needed %> more time(s) to break even<br>
       <% else %>
         Congratulations! You've broken even!<br>
       <% end %>
