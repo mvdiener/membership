@@ -32,6 +32,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Foundation framework
 gem 'foundation-rails'
 
+# Heroku gem
+gem 'rails_12factor', group: :production
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
