@@ -79,4 +79,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Tell the app that the secret key is an evironment variable
+  config.secret_key_base = ENV["SECRET_KEY_BASE"]
+
 end
