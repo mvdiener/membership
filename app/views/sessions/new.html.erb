@@ -1,11 +1,11 @@
-<div class="small-10 columns small-centered">
+<div class="small-3 columns small-centered">
   <div class="row">
     <h1>Log In</h1>
     <%= form_for(:session, url: sessions_path, method: 'POST') do |f| %>
       <label for="left-label" class="left"><%= f.label :email %> </label>
-      <%= f.text_field :email %><br>
+      <%= f.text_field :email, required: true %><br>
       <label for="left-label" class="left"><%= f.label :password %> </label>
-      <%= f.password_field :password %><br>
+      <%= f.password_field :password, required: true %><br>
       <%= f.submit "Sign in", class: 'button' %>
     <% end %>
   </div>

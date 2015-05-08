@@ -8,13 +8,15 @@
     <% end %>
     <%= form_for(@pass, url: pass_path, method: "PUT") do |f| %>
       <label for="left-label" class="left"><%= f.label :pass_name %> </label>
-      <%= f.text_field :name %><br>
+      <%= f.text_field :name, required: true %><br>
       <label for="left-label" class="left"><%= f.label :pass_start_date %> </label>
-      <%= f.date_field :start_date %><br>
+      <%= f.date_field :start_date, required: true %><br>
       <label for="left-label" class="left"><%= f.label :pass_duration_in_days %> </label>
-      <%= f.number_field :duration_day, class: "text_field" %><br>
+      <%= f.number_field :duration_day, required: true, class: "text_field" %><br>
+      <label for="left-label" class="left"><%= f.label :number_of_times_pass_has_already_been_used %> </label>
+      <%= f.number_field :attended_count, required: true, class: "text_field" %><br>
       <label for="left-label" class="left"><%= f.label :pass_cost %> </label>
-      <%= f.number_field :total_cost, class: "text_field", step: "0.01" %><br>
+      <%= f.number_field :total_cost, required: true, class: "text_field", step: "0.01" %><br>
       <label for="left-label" class="left"><%= f.label :cost_per_day_without_pass %> </label>
       <%= f.number_field :daily_cost, placeholder: "Leave blank if N/A", class: "text_field", step: "0.01" %><br>
       <%= f.submit "Done Editing", class: 'button' %>
