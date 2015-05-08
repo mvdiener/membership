@@ -5,6 +5,7 @@ class Pass < ActiveRecord::Base
   validates :name, :total_cost, :start_date, :duration_day, presence: true
 
   validates :duration_day, numericality: { only_integer: true }
+  validates :attended_count, numericality: { only_integer: true }
   validates :total_cost, numericality: { only_float: true }
   validates :daily_cost, numericality: { only_float: true }, allow_nil: true
 

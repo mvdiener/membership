@@ -72,7 +72,7 @@ class PassesController < ApplicationController
   private
 
     def pass_params
-      params.require(:pass).permit(:name, :total_cost, :start_date, :daily_cost, :duration_day)
+      params.require(:pass).permit(:name, :total_cost, :start_date, :daily_cost, :duration_day, :attended_count)
     end
 
 
